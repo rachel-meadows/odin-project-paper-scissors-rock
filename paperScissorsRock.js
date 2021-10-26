@@ -78,19 +78,23 @@ function mainLoop() {
     }
 }
 
+function playAgain() {
+    let playAgain = prompt("Do you want to play again? (y/n)");
+    if (playAgain.toLowerCase() == "y") {
+        let winCount = 0;
+        let loseCount = 0;
+        let drawCount = 0;
+        mainLoop()
+    } else if (playAgain.toLowerCase() == "n") {
+        console.log("Thanks for playing!");
+    } else {
+        console.log("That was not a valid option.")
+    }
+}
+
 // Main loop begins here
 let winCount = 0;
 let loseCount = 0;
 let drawCount = 0;
 mainLoop()
-let playAgain = prompt("Do you want to play again? (y/n)");
-if (playAgain.toLowerCase() == "y") {
-    let winCount = 0;
-    let loseCount = 0;
-    let drawCount = 0;
-    mainLoop()
-} else if (playAgain.toLowerCase() == "n") {
-    console.log("Thanks for playing!");
-} else {
-    console.log("That was not a valid option.");
-}
+playAgain()
