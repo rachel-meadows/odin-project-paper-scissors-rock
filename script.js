@@ -1,4 +1,4 @@
-function computerPlay() {
+function getComputerMove() {
     let currentPlay = Math.floor(Math.random() * 3);
     if (currentPlay === 1) {
         return "paper";
@@ -9,12 +9,11 @@ function computerPlay() {
     }
 }
 
-function currentRound() {
-    let computerChoice = computerPlay()
-    let userPlay = prompt("What move do you want to make? (paper / scissors / rock)").toLowerCase()
-    console.log(`Your choice was ${userPlay}.`)
+function playRound(playerMove) {
+    let computerChoice = getComputerMove()
+    console.log(`Your choice was ${playerMove}.`)
     console.log(`The computer's choice was ${computerChoice}.`)
-    if (userPlay === "paper") {
+    if (playerMove === "paper") {
         if (computerChoice === "paper") {
             draw()
         } else if (computerChoice === "scissors") {
@@ -22,7 +21,7 @@ function currentRound() {
         } else {
             win()
         }
-    } else if (userPlay === "scissors") {
+    } else if (playerMove === "scissors") {
         if (computerChoice === "paper") {
             win()
         } else if (computerChoice === "scissors") {
@@ -30,7 +29,7 @@ function currentRound() {
         } else {
             lose()
         }
-    } else if (userPlay === "rock") {
+    } else if (playerMove === "rock") {
         if (computerChoice === "paper") {
             lose()
         } else if (computerChoice === "scissors") {
@@ -46,49 +45,23 @@ function currentRound() {
 
 function win() {
     console.log("You win!")
-    winCount += 1;
 }
 
 function draw() {
     console.log("You drew!")
-    drawCount += 1;
 }
 
 function lose() {
     console.log("You lose!")
-    loseCount += 1;
 }
 
 function game() {
     for (let i = 1; i <= 5; i++) {
         console.log(`It is now round ${i}. Let's go!`)
-        let validInput = currentRound()
+        let validInput = playRound()
         if (validInput == false) {
             i--;
         }
-    }
-}
-
-function mainLoop() {
-    console.log("Welcome to paper scissors rock. We'll play 5 rounds - winner takes all.");
-    game();
-    console.log(`You won ${winCount} games, lost ${loseCount} games, and drew ${drawCount} games.`);
-    if (winCount > loseCount) {
-        console.log("Looks like you're the winner, champ!")
-    }
-}
-
-function playAgain() {
-    let playAgain = prompt("Do you want to play again? (y/n)");
-    if (playAgain.toLowerCase() == "y") {
-        let winCount = 0;
-        let loseCount = 0;
-        let drawCount = 0;
-        mainLoop()
-    } else if (playAgain.toLowerCase() == "n") {
-        console.log("Thanks for playing!");
-    } else {
-        console.log("That was not a valid option.")
     }
 }
 
@@ -96,5 +69,12 @@ function playAgain() {
 let winCount = 0;
 let loseCount = 0;
 let drawCount = 0;
-mainLoop()
-playAgain()
+
+
+function getPlayerMove() {
+    console.log("huh")
+}
+
+document.getElementById("paperButton").addEventListener("click", function(){ playRound("paper");} ); 
+document.getElementById("scissorsButton").addEventListener("click", function(){ playRound("scissors");} ); 
+document.getElementById("rockButton").addEventListener("click", function(){ playRound("rock");} ); 

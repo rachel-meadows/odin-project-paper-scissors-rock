@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: aqua;
+.playerOptions {
+    display: flex;
+    gap: 20px;
+}
+
+.playerMoveButton {
+    width: 200px;
+    height: 200px;
+    border: black 5px solid;
+    border-radius: 10px;
+}
+
+.playerMoveButton:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 2px black;
 }
