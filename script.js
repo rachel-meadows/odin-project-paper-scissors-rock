@@ -1,80 +1,29 @@
-function getComputerMove() {
-    let currentPlay = Math.floor(Math.random() * 3);
-    if (currentPlay === 1) {
-        return "paper";
-    } else if (currentPlay === 2) {
-        return "scissors";
-    } else {
-        return "rock";
-    }
-}
-
-function playRound(playerMove) {
-    let computerChoice = getComputerMove()
-    console.log(`Your choice was ${playerMove}.`)
-    console.log(`The computer's choice was ${computerChoice}.`)
-    if (playerMove === "paper") {
-        if (computerChoice === "paper") {
-            draw()
-        } else if (computerChoice === "scissors") {
-            lose()
-        } else {
-            win()
-        }
-    } else if (playerMove === "scissors") {
-        if (computerChoice === "paper") {
-            win()
-        } else if (computerChoice === "scissors") {
-            draw()
-        } else {
-            lose()
-        }
-    } else if (playerMove === "rock") {
-        if (computerChoice === "paper") {
-            lose()
-        } else if (computerChoice === "scissors") {
-            win()
-        } else {
-            draw()
-        }
-    } else {
-        console.log("That was not a valid option.");
-        return false
-    }
-}
-
-function win() {
-    console.log("You win!")
-}
-
-function draw() {
-    console.log("You drew!")
-}
-
-function lose() {
-    console.log("You lose!")
-}
-
 function game() {
-    for (let i = 1; i <= 5; i++) {
-        console.log(`It is now round ${i}. Let's go!`)
-        let validInput = playRound()
-        if (validInput == false) {
-            i--;
-        }
+    playerScore = 0;
+    computerScore = 0;
+    roundCount = 0;
+
+    playGame();
+}
+
+function playGame(){
+    playerOptions = document.getElementsByClassName("playerMoveButton");
+    for(let i=0; i<=playerOptions.length; i++) {
+        console.log(playerOptions[i])
     }
+
 }
 
-// Main loop begins here
-let winCount = 0;
-let loseCount = 0;
-let drawCount = 0;
+playGame();
 
+// Create a function playGame() and inside the function use DOM manipulation to get hold of all the three buttons we created in HTML for player input. Create an array playerOptions which will contain all three buttons as its elements. Similarly, create an array for computer options.
 
-function getPlayerMove() {
-    console.log("huh")
-}
+// Use forEach() loop on playerOptions so that we can add an event listener on all buttons with a single piece of code. Inside the loop increment moves counter by 1 display moves left on the screen by subtracting moves from 10. Generate a random value for the computer option and compare it with the player’s input.
 
-document.getElementById("paperButton").addEventListener("click", function(){ playRound("paper");} ); 
-document.getElementById("scissorsButton").addEventListener("click", function(){ playRound("scissors");} ); 
-document.getElementById("rockButton").addEventListener("click", function(){ playRound("rock");} ); 
+// Create a function winner() which will receive two arguments one the player’s input and the other the computer’s option  The function will decide who wins the point among the player and computer.
+
+// Create a function gameOver() which will display the final result with reload button. The function will be called when moves will become equals to 5.
+
+// Call the playGame() function inside the game() function.
+
+// Now call the game() function at the end of the file.
