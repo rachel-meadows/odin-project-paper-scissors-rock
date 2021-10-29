@@ -16,7 +16,7 @@ body {
 
 hr {
     border-top: 2px solid rgb(43, 43, 43);
-    width: 80%;
+    width: 75%;
     margin-bottom: 30px;
 }
 
@@ -58,6 +58,21 @@ h1 {
     border: 2px rgb(187, 187, 5) solid;
 }
 
+.computerSelectedUserWin, .computerSelectedUserWin:hover {
+    border: 4px rgb(1, 94, 1) solid;
+    background-color: rgba(3, 143, 3, 0.8);
+}
+
+.computerSelectedUserLose, .computerSelectedUserLose:hover {
+    border: 4px rgb(238, 5, 5) solid;
+    background-color: rgba(255, 0, 0, 0.7);
+}
+
+.computerSelectedUserDraw, .computerSelectedUserDraw:hover {
+    border: 4px rgb(112, 112, 112) solid;
+    background-color: rgba(179, 179, 179, 0.836);
+}
+
 #movesLeft {
     margin-bottom: 20px;;
 }
@@ -80,11 +95,35 @@ h1 {
 #playAgain {
     margin-top: 20px;
     padding: 15px 20px;
-    border: black 5px solid;
+    border: black 4px solid;
     border-radius: 10px;
     text-align: center;
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+#playAgain:hover {
+    background-color: rgba(0, 128, 0, 0.6);
 }
 
 #currentRound {
     margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .playerMoveButton, .playerMoveButton:hover {
+        width: 90px;
+        height: 90px;
+    }
+
+    #resultsBox {
+        min-width: 300px;
+        height: 100px;
+        overflow: hidden;
+    }
+
+    #playAgain {
+        margin-top:25px;
+        border: black 2px solid;
+        border-radius: 7px;
+    }
 }

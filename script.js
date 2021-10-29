@@ -64,7 +64,76 @@ function newRound(player) {
     result.textContent = `You ${roundResult}!`;
     playerScoreText.textContent = `Your score: ${playerScore}`;
     computerScoreText.textContent = `Computer score: ${computerScore}`;
+    
+    let computerButton = document.getElementById(computerMove.toLowerCase() + "Button");
 
+    if (computerMove == "Paper") {
+
+        // Will clean up this disgusting code at some point; just wanted to see if it looks good in the UI
+        
+        if (roundResult == "win") {
+            // Paper win
+            computerButton.classList.add("computerSelectedUserWin", "computerSelectedUserWin:hover");
+            computerButton.classList.remove("computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            rockButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            scissorsButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            // Paper draw
+        } else if (roundResult == "draw") {
+            computerButton.classList.add("computerSelectedUserDraw", "computerSelectedUserDraw:hover");
+            computerButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            rockButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            scissorsButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");         
+        } else {
+            // Paper lose
+            computerButton.classList.add("computerSelectedUserLose", "computerSelectedUserLose:hover");
+            computerButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover");
+            rockButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            scissorsButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+        }
+    }
+    if (computerMove == "Scissors") {
+        if (roundResult == "win") {
+            // Scissors win
+            computerButton.classList.add("computerSelectedUserWin", "computerSelectedUserWin:hover");
+            computerButton.classList.remove("computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            rockButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            paperButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+        } else if (roundResult == "draw") {
+            // Scissors draw
+            computerButton.classList.add("computerSelectedUserDraw", "computerSelectedUserDraw:hover");
+            computerButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            rockButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            paperButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");          
+        } else {
+            // Scissors lose
+            computerButton.classList.add("computerSelectedUserLose", "computerSelectedUserLose:hover");
+            computerButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover");
+            rockButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            paperButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+        }
+    }
+    if (computerMove == "Rock") {
+        // Rock win
+        if (roundResult == "win") {
+            computerButton.classList.add("computerSelectedUserWin", "computerSelectedUserWin:hover");
+            computerButton.classList.remove("computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            paperButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            scissorsButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+        } else if (roundResult == "draw") {
+            // Rock draw
+            computerButton.classList.add("computerSelectedUserDraw", "computerSelectedUserDraw:hover");
+            computerButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            paperButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            scissorsButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");     
+        } else {
+            // Rock lose
+            computerButton.classList.add("computerSelectedUserLose", "computerSelectedUserLose:hover");
+            computerButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover");
+            paperButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+            scissorsButton.classList.remove("computerSelectedUserWin", "computerSelectedUserWin:hover", "computerSelectedUserDraw", "computerSelectedUserDraw:hover", "computerSelectedUserLose", "computerSelectedUserLose:hover");
+        }
+    }
+    
     // Update current round
     currentRound ++;
     currentRoundBox.textContent = `Current round: ${currentRound}`;
