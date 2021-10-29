@@ -86,21 +86,29 @@ function newGame() {
     playerScore = 0;
     computerScore = 0;
 
-    console.log("I'm in the function 'new game'");
-
     paperButton.addEventListener("click", function(){
-        console.log("I'm in the function 'empty'");
+        paperButton.classList.add("userSelected", "userSelected:hover");
+        rockButton.classList.remove("userSelected", "userSelected:hover");
+        scissorsButton.classList.remove("userSelected", "userSelected:hover");
+
         let playerSelection = "Paper";
         newRound(playerSelection);
-        console.log("I've just finished in the function 'new round'");
         return;
     });
     scissorsButton.addEventListener("click", function(){
+        scissorsButton.classList.add("userSelected", "userSelected:hover");   
+        rockButton.classList.remove("userSelected", "userSelected:hover");
+        paperButton.classList.remove("userSelected", "userSelected:hover");
+
         let playerSelection = "Scissors";
         newRound(playerSelection);
         return;
     });
     rockButton.addEventListener("click", function(){
+        rockButton.classList.add("userSelected", "userSelected:hover"); 
+        paperButton.classList.remove("userSelected", "userSelected:hover");
+        scissorsButton.classList.remove("userSelected", "userSelected:hover");
+
         let playerSelection = "Rock";
         newRound(playerSelection);
         return;
@@ -110,7 +118,6 @@ function newGame() {
 
 // Call the start of the chain
 playAgainButton.addEventListener("click", function(){
-    console.log("MMMMMMMMM");
 
     // Clear results
     playerMoveText.textContent = ``;
