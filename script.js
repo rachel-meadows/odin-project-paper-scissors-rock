@@ -1,29 +1,127 @@
-function game() {
+// Initialise the variables
+const resultText = document.querySelector('#result');
+resultText.textContent = ``;
+
+const playerMoveText = document.querySelector('#playerMove');
+playerMoveText.textContent = ``;
+
+const computerMoveText = document.querySelector('#computerMove');
+computerMoveText.textContent = ``;
+
+const playerScoreText = document.querySelector('#playerScore');
+playerScoreText.textContent = "Your score: ";
+
+const computerScoreText = document.querySelector('#computerScore');
+computerScoreText.textContent = "Computer score: ";
+
+const currentRoundBox = document.querySelector('#currentRound');
+currentRoundBox.textContent = `Current round: 1`;
+
+const playAgainButton = document.querySelector('#playAgain');
+const paperButton = document.getElementById("paperButton");
+const scissorsButton = document.getElementById("scissorsButton");
+const rockButton = document.getElementById("rockButton");
+
+let currentRound = 1;
+let playerScore = 0;
+let computerScore = 0;
+
+// Function to generate the computer's response
+function getComputerMove() {
+    let currentPlay = Math.floor(Math.random() * 3);
+    if (currentPlay === 1) {
+        computerMove = "Paper";
+    } else if (currentPlay === 2) {
+        computerMove = "Scissors";
+    } else {
+        computerMove = "Rock";
+    }
+    return computerMove;
+}
+
+// See who wins one round
+function evaluateWinner(player, computer) {
+    if ( (playerMove == "Paper" && computerMove == "Paper") || (playerMove == "Scissors" && computerMove == "Scissors") || (playerMove == "Rock" && computerMove == "Rock") ) {
+        return "draw";
+    } else if ( (playerMove == "Paper" && computerMove == "Rock") || (playerMove == "Scissors" && computerMove == "Paper") || (playerMove == "Rock" && computerMove == "Scissors") ) {
+        playerScore ++;
+        return "win";
+    } else {
+        computerScore ++;
+        return "lose";
+    }
+}
+
+// Put everything into the round itself
+function newRound(player) {
+    computerMove = getComputerMove();
+    playerMove = player;
+    roundResult = evaluateWinner(playerMove, computerMove);
+
+    // Print results
+    playerMoveText.textContent = `Your move: ${playerMove}`;
+    computerMoveText.textContent = `Computer move: ${computerMove}`;
+    result.textContent = `You ${roundResult}!`;
+    playerScoreText.textContent = `Your score: ${playerScore}`;
+    computerScoreText.textContent = `Computer score: ${computerScore}`;
+
+    // Update current round
+    currentRound ++;
+    currentRoundBox.textContent = `Current round: ${currentRound}`;
+    return;
+}
+
+function gameOver(){
+    playerMoveText.textContent = `Your final score: ${playerScore}`;
+    computerMoveText.textContent = `Computer final score: ${computerScore}`;
+    gameIsDone = true;
+    if (playerScore > computerScore) {
+        result.textContent = `You won!`;
+    } else {
+        result.textContent = `You lost!`;
+    }
+}
+
+function newGame() {
     playerScore = 0;
     computerScore = 0;
-    roundCount = 0;
 
-    playGame();
+    console.log("I'm in the function 'new game'");
+
+    paperButton.addEventListener("click", function(){
+        console.log("I'm in the function 'empty'");
+        let playerSelection = "Paper";
+        newRound(playerSelection);
+        console.log("I've just finished in the function 'new round'");
+        return;
+    });
+    scissorsButton.addEventListener("click", function(){
+        let playerSelection = "Scissors";
+        newRound(playerSelection);
+        return;
+    });
+    rockButton.addEventListener("click", function(){
+        let playerSelection = "Rock";
+        newRound(playerSelection);
+        return;
+    });
+
 }
 
-function playGame(){
-    playerOptions = document.getElementsByClassName("playerMoveButton");
-    for(let i=0; i<=playerOptions.length; i++) {
-        console.log(playerOptions[i])
-    }
+// Call the start of the chain
+playAgainButton.addEventListener("click", function(){
+    console.log("MMMMMMMMM");
 
-}
-
-playGame();
-
-// Create a function playGame() and inside the function use DOM manipulation to get hold of all the three buttons we created in HTML for player input. Create an array playerOptions which will contain all three buttons as its elements. Similarly, create an array for computer options.
-
-// Use forEach() loop on playerOptions so that we can add an event listener on all buttons with a single piece of code. Inside the loop increment moves counter by 1 display moves left on the screen by subtracting moves from 10. Generate a random value for the computer option and compare it with the player’s input.
-
-// Create a function winner() which will receive two arguments one the player’s input and the other the computer’s option  The function will decide who wins the point among the player and computer.
-
-// Create a function gameOver() which will display the final result with reload button. The function will be called when moves will become equals to 5.
-
-// Call the playGame() function inside the game() function.
-
-// Now call the game() function at the end of the file.
+    // Clear results
+    playerMoveText.textContent = ``;
+    computerMoveText.textContent = ``;
+    result.textContent = ``;
+    playerScore = 0;
+    computerScore = 0;
+    currentRound = 1;
+    playerScoreText.textContent = `Your score: ${playerScore}`;
+    computerScoreText.textContent = `Computer score: ${computerScore}`;
+    currentRoundBox.textContent = `Current round: ${currentRound}`;
+    newGame();
+});
+newGame();

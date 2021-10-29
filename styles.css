@@ -57,7 +57,7 @@ h1 {
 #resultsBox {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     padding: 5vh;
     border: rgb(73, 73, 73) 2px solid;
@@ -77,5 +77,6 @@ h1 {
     text-align: center;
 }
 
-
-/* .textOutput */
+#currentRound {
+    margin-bottom: 10px;;
+}
