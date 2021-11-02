@@ -1,21 +1,13 @@
 // Initialise the variables
 const resultText = document.querySelector('#result');
-resultText.textContent = ``;
-
 const playerMoveText = document.querySelector('#playerMove');
-playerMoveText.textContent = ``;
-
 const computerMoveText = document.querySelector('#computerMove');
-computerMoveText.textContent = ``;
-
 const playerScoreText = document.querySelector('#playerScore');
 playerScoreText.textContent = "Your score: ";
-
 const computerScoreText = document.querySelector('#computerScore');
 computerScoreText.textContent = "Computer score: ";
-
 const currentRoundBox = document.querySelector('#currentRound');
-currentRoundBox.textContent = `Current round: 1`;
+currentRoundBox.textContent = "Current round: 1";
 
 const playAgainButton = document.querySelector('#playAgain');
 const paperButton = document.getElementById("paperButton");
@@ -52,21 +44,20 @@ function evaluateWinner(player, computer) {
     }
 }
 
-
 // Put everything into the round itself
 function newRound(player) {
     computerMove = getComputerMove();
     playerMove = player;
     roundResult = evaluateWinner(playerMove, computerMove);
 
-    // Print results
+    // Print results of the current round
     playerMoveText.textContent = `Your move: ${playerMove}`;
     computerMoveText.textContent = `Computer move: ${computerMove}`;
     result.textContent = `You ${roundResult}!`;
     playerScoreText.textContent = `Your score: ${playerScore}`;
     computerScoreText.textContent = `Computer score: ${computerScore}`;
 
-    function changeHighlight(computerButton, winState) {
+    function addComputerHighlight(computerButton, winState) {
         winState = winState[0].toUpperCase() + winState.substring(1);
     
         // Get rid of all old styles
@@ -81,7 +72,7 @@ function newRound(player) {
 
     // Change highlight colour of computer's selection
     let computerButton = document.getElementById(computerMove.toLowerCase() + "Button");
-    changeHighlight(computerButton, roundResult);
+    addComputerHighlight(computerButton, roundResult);
     
     // Update current round
     currentRound ++;
@@ -104,37 +95,38 @@ function newGame() {
     playerScore = 0;
     computerScore = 0;
 
-    paperButton.addEventListener("click", function(){
-        paperButton.classList.add("userSelected", "userSelected:hover");
+    function addUserHighlight(playerSelection) {
+        // Remove old styles
+        paperButton.classList.remove("userSelected", "userSelected:hover");
         rockButton.classList.remove("userSelected", "userSelected:hover");
         scissorsButton.classList.remove("userSelected", "userSelected:hover");
 
+        // Apply new style
+        let userButton = document.getElementById(playerSelection.toLowerCase() + "Button");
+        userButton.classList.add("userSelected", "userSelected:hover"); 
+    }
+
+    paperButton.addEventListener("click", function(){
         let playerSelection = "Paper";
+        addUserHighlight(playerSelection);
         newRound(playerSelection);
         return;
     });
     scissorsButton.addEventListener("click", function(){
-        scissorsButton.classList.add("userSelected", "userSelected:hover");   
-        rockButton.classList.remove("userSelected", "userSelected:hover");
-        paperButton.classList.remove("userSelected", "userSelected:hover");
-
         let playerSelection = "Scissors";
+        addUserHighlight(playerSelection);
         newRound(playerSelection);
         return;
     });
     rockButton.addEventListener("click", function(){
-        rockButton.classList.add("userSelected", "userSelected:hover"); 
-        paperButton.classList.remove("userSelected", "userSelected:hover");
-        scissorsButton.classList.remove("userSelected", "userSelected:hover");
-
         let playerSelection = "Rock";
+        addUserHighlight(playerSelection);
         newRound(playerSelection);
         return;
     });
-
 }
 
-// Call the start of the chain
+// Call the start of the game
 playAgainButton.addEventListener("click", function(){
 
     // Clear results
